@@ -17,7 +17,10 @@
     "redux-axios-middleware": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/core": "7.0.0-beta.54",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
+    "babel-preset-react-native": "2.1.0",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-babel": "^5.1.0",
