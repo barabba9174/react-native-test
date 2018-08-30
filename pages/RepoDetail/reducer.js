@@ -18,11 +18,12 @@ export default function reducer(state = { repo: {} }, action) {
 }
 
 export function repoDetail(user, repo) {
+  console.log(`https://api.github.com/users/${user}/${repo}/readme`);
   return {
     type: GET_REPOS_DETAIL,
     payload: {
       request: {
-        url: `/users/${user}/repos/${repo}`,
+        url: `/repos/${user}/${repo}/readme`,
       },
     },
   };

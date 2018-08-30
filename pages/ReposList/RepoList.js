@@ -12,20 +12,19 @@ export default class RepoList extends Component {
   static propTypes = {
     repos: arrayOf(shape({})),
     navigation: shape({}),
+    user: string,
   };
 
   static defaultProps = {
     repos: [],
     navigation: {},
-    user: string,
+    user: '',
   };
 
-  static navigationOptions = {
-    title: 'Repos list for',
-  };
 
   componentDidMount() {
-    this.props.listRepos('relferreira');
+    const { navigation, listRepos } = this.props;
+    listRepos(navigation.state.params.user);
   }
 
   keyExtractor = (item, index) => `repo${index}`;
@@ -34,8 +33,14 @@ export default class RepoList extends Component {
   renderItem = ({ item }) => (
     <ListItem
       title={item.name}
+      style={styles.subtitleView}
       subtitle={item.description}
-      onPress={() => console.log('test')}
+      onPress={() => this.props.navigation.push('Detail', {
+        user: this.props.navigation.state.params.user,
+        repo: item.name,
+      })}
+      chevronColor="grey"
+      chevron
       leftAvatar={{
         source: { uri: item.owner.avatar_url },
         rounded: true,
@@ -45,9 +50,10 @@ export default class RepoList extends Component {
   )
 
   render() {
-    const { repos } = this.props;
+    const { repos, user } = this.props;
     return (
       <FlatList
+        screenProps={{ user }}
         keyExtractor={this.keyExtractor}
         styles={styles.container}
         data={repos}

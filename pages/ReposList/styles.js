@@ -6,9 +6,9 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  item: {
-    padding: 16,
+  subtitleView: {
+    borderBottomColor: 'grey',
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
   },
+
 });

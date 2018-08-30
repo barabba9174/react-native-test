@@ -4,12 +4,11 @@ import { repoDetail } from './reducer';
 import RepoDetail from './RepoDetail';
 
 const mapStateToProps = (state) => {
-  const storedRepositorie = state.reportDetial.repo;
-  return {
-    repo: storedRepositorie,
-  };
+  console.log(state);
+  return ({
+  // repo: storedRepositorie,
+  });
 };
-
 const mapDispatchToProps = {
   repoDetail,
 };

@@ -11,9 +11,21 @@ import RepoDetail from './pages/RepoDetail';
 
 
 const Routing = createStackNavigator({
-  List: { screen: ReposList },
-  Detail: { screen: RepoDetail },
+  List: {
+    screen: ReposList,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.user,
+    }),
+  },
+  Detail: {
+    screen: RepoDetail,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.repo,
+    }),
+  },
   Third: { screen: Third },
+}, {
+  initialRouteParams: { user: 'relferreira' },
 });
 
 export default function App() {

@@ -15,6 +15,16 @@ export default class RepoDetail extends Component {
     repo: {},
   };
 
+  componentDidMount() {
+    const { navigation, repoDetail } = this.props;
+    const { getParam } = navigation;
+    repoDetail(
+      navigation.getParam('user'),
+      navigation.getParam('repo')
+    );
+  }
+
+
   renderItem = ({ item }) => (
     <View style={styles.item}>
       <Text>{item.name}</Text>
@@ -23,6 +33,7 @@ export default class RepoDetail extends Component {
 
   render() {
     const { repo } = this.props;
+    console.log(repo);
     return (
       <FlatList />
     );

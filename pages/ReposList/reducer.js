@@ -5,15 +5,10 @@ export default function reducer(state = { repos: [], user: '' }, action) {
     case GET_REPOS:
       return { ...state, loading: true };
     case GET_REPOS_SUCCESS: {
-      const { meta = {} } = action;
-      const { previousAction = {} } = meta;
-      const { payload: previousPayload = {} } = previousAction;
-      const { request = {} } = previousPayload;
       return {
         ...state,
         loading: false,
         repos: action.payload.data,
-        user: request.user || state.user,
       }; }
     case GET_REPOS_FAIL:
       return {

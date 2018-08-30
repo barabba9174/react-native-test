@@ -7,7 +7,6 @@ const mapStateToProps = (state) => {
   const storedRepositories = state.reportList.repos.map(repo => ({ key: repo.id, ...repo }));
   return {
     repos: storedRepositories,
-    user: state.reportList.user,
   };
 };
 
