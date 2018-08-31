@@ -3,15 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "clear": "rm -rf android/app/build  && rm -rf ios/app/build && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && watchman watch-del-all && rm -rf node_modules/ && npm cache clean --force && npm i",
+    "react-devtools": "react-devtools"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "buffer": "^5.2.0",
     "prop-types": "^15.6.2",
     "react": "16.4.1",
     "react-intl-native": "^2.1.2",
     "react-native": "^0.56.0",
     "react-native-elements": "^1.0.0-beta5",
+    "react-native-fit-image": "^1.5.4",
+    "react-native-loader": "^1.2.1",
+    "react-native-markdown-renderer": "^3.2.8",
     "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.11.2",
     "react-navigation-redux-helpers": "^2.0.5",
@@ -30,6 +36,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "eslint-plugin-react-native": "^3.2.1"
+    "eslint-plugin-react-native": "^3.2.1",
+    "react-devtools": "^3.3.2"
   }
 }
