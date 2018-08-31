@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  View,
+} from 'react-native';
 
 import {
   Bubbles,
@@ -6,8 +9,20 @@ import {
 
 export default function Loader() {
   return (
-    <View>
-      <Bubbles size={10} color="#ccc" />
+    <View style={{
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: '#fff',
+    }}
+    >
+      <View style={{
+        textAlignVertical: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+      }}
+      >
+        <Bubbles size={10} color="#ccc" styles={{}} />
+      </View>
     </View>
   );
 }

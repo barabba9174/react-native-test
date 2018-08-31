@@ -4,9 +4,12 @@ import { listRepos } from './reducer';
 import RepoList from './RepoList';
 
 const mapStateToProps = (state) => {
-  const storedRepositories = state.reportList.repos.map(repo => ({ key: repo.id, ...repo }));
+  const { reportList = {} } = state;
+  const { loading, repos = [] } = reportList;
+  const storedRepositories = repos.map(repo => ({ key: repo.id, ...repo }));
   return {
     repos: storedRepositories,
+    loading,
   };
 };
 

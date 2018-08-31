@@ -4,8 +4,11 @@ import {
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
-import { arrayOf, shape, string } from 'prop-types';
+import {
+  arrayOf, shape, string, bool,
+} from 'prop-types';
 
+import Loading from '../../common/Loader';
 import styles from './styles';
 
 export default class RepoList extends Component {
@@ -13,12 +16,14 @@ export default class RepoList extends Component {
     repos: arrayOf(shape({})),
     navigation: shape({}),
     user: string,
+    loading: bool,
   };
 
   static defaultProps = {
     repos: [],
     navigation: {},
     user: '',
+    loading: false,
   };
 
 
@@ -50,8 +55,8 @@ export default class RepoList extends Component {
   )
 
   render() {
-    const { repos, user } = this.props;
-    return (
+    const { repos, user, loading } = this.props;
+    return loading ? (<Loading />) : (
       <FlatList
         screenProps={{ user }}
         keyExtractor={this.keyExtractor}
