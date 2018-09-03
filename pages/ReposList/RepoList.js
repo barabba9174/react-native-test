@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
-  View, Text, FlatList, Button,
+  FlatList,
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
 import {
-  arrayOf, shape, string, bool,
+  arrayOf, shape, string, bool, func,
 } from 'prop-types';
 
 import Loading from '../../common/Loader';
@@ -17,6 +17,7 @@ export default class RepoList extends Component {
     navigation: shape({}),
     user: string,
     loading: bool,
+    listRepos: func,
   };
 
   static defaultProps = {
@@ -24,6 +25,7 @@ export default class RepoList extends Component {
     navigation: {},
     user: '',
     loading: false,
+    listRepos: () => {},
   };
 
   static navigationOptions = {

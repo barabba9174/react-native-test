@@ -1,89 +1,53 @@
 import React, { Component } from 'react';
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
-import {
-  View, Text, FlatList, Button,
-} from 'react-native';
 import { Provider } from 'react-redux';
-import { Icon } from 'react-native-elements';
+import Orientation from 'react-native-orientation';
 
-import Third from './pages/Third';
-import Second from './pages/Second';
-import Home from './pages/Home';
+import Drawer from './Routing';
 import store from './redux/store';
-import ReposList from './pages/ReposList';
-import RepoDetail from './pages/RepoDetail';
 
 
-function HeaderLeft({ navigation }) {
-  return (
-    <Icon name="menu" size={30} containerStyle={{ marginLeft: 10 }} onPress={() => { navigation.toggleDrawer(); }} />
-  );
-}
+export default class App extends Component {
+  static propTypes = {
 
-function HeaderLeftBack({ navigation }) {
-  return (
-    <Icon name="chevron-left" size={30} containerStyle={{ marginLeft: 10 }} onPress={() => { navigation.goBack(); }} />
-  );
-}
+  };
+
+  static defaultProps = {
+
+  };
 
 
-const Routing = createStackNavigator({
-  List: {
-    screen: ReposList,
-    navigationOptions: ({ navigation }) => ({
-      title: navigation.state.params.user,
-    }),
-  },
-  Detail: {
-    screen: RepoDetail,
-    navigationOptions: ({ navigation }) => ({
-      title: navigation.state.params.repo,
-      headerLeft: (<HeaderLeftBack navigation={navigation} />),
-    }),
-  },
-  First: {
-    screen: Home,
-  },
-  Second: {
-    screen: Second,
-  },
-  Third: {
-    screen: Third,
-  },
-}, {
-  initialRouteParams: { user: 'relferreira' },
-  initialRouteName: 'List',
-  navigationOptions: ({ navigation }) => ({
-    headerLeft: (<HeaderLeft navigation={navigation} />),
-  }),
-});
+  componentDidMount() {
+    Orientation.unlockAllOrientations();
 
-const RootDrawer = createDrawerNavigator({
-  Home: {
-    screen: Routing,
-  },
-  List: {
-    screen: ReposList,
-  },
-  First: {
-    screen: Home,
-  },
-  Second: {
-    screen: Second,
+    Orientation.addOrientationListener(this.orientationDidChange);
+  }
 
-  },
-  Third: {
-    screen: Third,
-  },
-}, {
-  initialRouteName: 'Home',
-  initialRouteParams: { user: 'relferreira' },
-});
+  componentWillUnmount() {
+    Orientation.getOrientation((err, orientation) => {
+      console.log(`Current Device Orientation: ${orientation}`);
+    });
 
-export default function App() {
-  return (
-    <Provider store={store}>
-      <RootDrawer />
-    </Provider>
-  );
+
+    // Remember to remove listener
+    Orientation.removeOrientationListener(this.orientationDidChange);
+  }
+
+
+  orientationDidChange = (orientation) => {
+    console.log(orientation);
+    if (orientation === 'LANDSCAPE') {
+      // do something with landscape layout
+    } else {
+      // do something with portrait layout
+    }
+  }
+
+
+  render() {
+    return (
+      <Provider store={store}>
+        <Drawer />
+      </Provider>
+    );
+  }
 }
