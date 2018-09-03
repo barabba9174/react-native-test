@@ -1,0 +1,2 @@
+export const GET_DIMENSIONS = 'GET_DIMENSIONS';
+export const SET_DIMENSIONS = 'SET_DIMENSIONS';

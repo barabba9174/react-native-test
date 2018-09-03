@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import Orientation from 'react-native-orientation';
 
+import Dimensions from './Dimensions';
 import Drawer from './Routing';
 import store from './redux/store';
 
@@ -15,10 +16,16 @@ export default class App extends Component {
 
   };
 
+  constructor() {
+    super();
+    this.state = {
+      orientation: Orientation.getInitialOrientation(),
+    };
+  }
+
 
   componentDidMount() {
     Orientation.unlockAllOrientations();
-
     Orientation.addOrientationListener(this.orientationDidChange);
   }
 
@@ -35,6 +42,7 @@ export default class App extends Component {
 
   orientationDidChange = (orientation) => {
     console.log(orientation);
+    this.setState({ orientation });
     if (orientation === 'LANDSCAPE') {
       // do something with landscape layout
     } else {
@@ -46,7 +54,9 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Drawer />
+        <Dimensions orientation={this.state.orientation}>
+          <Drawer />
+        </Dimensions>
       </Provider>
     );
   }
