@@ -13,15 +13,12 @@ export default function Loader() {
       flex: 1,
       justifyContent: 'center',
       backgroundColor: '#fff',
+      alignItems: 'center',
+
     }}
     >
-      <View style={{
-        textAlignVertical: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-      }}
-      >
-        <Bubbles size={10} color="#ccc" styles={{}} />
+      <View>
+        <Bubbles size={10} color="#ccc" />
       </View>
     </View>
   );

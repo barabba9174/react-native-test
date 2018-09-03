@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "node node_modules/react-native/local-cli/cli.js start && react-devtools",
     "clear": "rm -rf android/app/build  && rm -rf ios/app/build && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && watchman watch-del-all && rm -rf node_modules/ && npm cache clean --force && npm i",
     "react-devtools": "react-devtools"
   },

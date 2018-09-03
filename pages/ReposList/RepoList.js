@@ -35,24 +35,27 @@ export default class RepoList extends Component {
   keyExtractor = (item, index) => `repo${index}`;
 
 
-  renderItem = ({ item }) => (
-    <ListItem
-      title={item.name}
-      style={styles.subtitleView}
-      subtitle={item.description}
-      onPress={() => this.props.navigation.push('Detail', {
-        user: this.props.navigation.state.params.user,
-        repo: item.name,
-      })}
-      chevronColor="grey"
-      chevron
-      leftAvatar={{
-        source: { uri: item.owner.avatar_url },
-        rounded: true,
-        size: 'medium',
-      }}
-    />
-  )
+  renderItem = ({ item }) => {
+    const { navigation } = this.props;
+    return (
+      <ListItem
+        title={item.name}
+        style={styles.subtitleView}
+        subtitle={item.description}
+        onPress={() => navigation.push('Detail', {
+          user: navigation.state.params.user,
+          repo: item.name,
+        })}
+        chevronColor="grey"
+        chevron
+        leftAvatar={{
+          source: { uri: item.owner.avatar_url },
+          rounded: true,
+          size: 'medium',
+        }}
+      />
+    );
+  }
 
   render() {
     const { repos, user, loading } = this.props;

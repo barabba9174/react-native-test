@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import {
   View, Text, FlatList, ScrollView, Image, StyleSheet,
 } from 'react-native';
-import { string, func } from 'prop-types';
+import {
+  string, func, bool, shape,
+} from 'prop-types';
 import { Buffer } from 'buffer';
 import Markdown from 'react-native-markdown-renderer';
 import FitImage from 'react-native-fit-image';
+import Loading from '../../common/Loader';
 
 import styles from './styles';
 
@@ -46,10 +49,13 @@ export default class RepoDetail extends Component {
   static propTypes = {
     content: string,
     repoDetail: func,
+    loading: bool,
+    navigation: shape({}),
   };
 
   static defaultProps = {
     content: '',
+    loading: false,
   };
 
   componentDidMount() {
@@ -63,16 +69,15 @@ export default class RepoDetail extends Component {
 
 
   render() {
-    const { content } = this.props;
+    const { content, loading } = this.props;
 
-    return (
-      <View>
-        <ScrollView style={styles.container}>
-          <Markdown rules={rules} styles={markdown}>
-            {Buffer.from(content, 'base64').toString('ascii')}
-          </Markdown>
-        </ScrollView>
-      </View>
+
+    return loading ? (<Loading />) : (
+      <ScrollView style={styles.container}>
+        <Markdown rules={rules} styles={markdown}>
+          {Buffer.from(content, 'base64').toString('ascii')}
+        </Markdown>
+      </ScrollView>
     );
   }
 }
