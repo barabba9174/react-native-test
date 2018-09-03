@@ -16,7 +16,7 @@ const instructions = Platform.select({
 
 export default class Home extends Component {
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'First page',
   };
 
   static defaultProps = {

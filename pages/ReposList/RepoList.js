@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, FlatList,
+  View, Text, FlatList, Button,
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
@@ -26,6 +26,9 @@ export default class RepoList extends Component {
     loading: false,
   };
 
+  static navigationOptions = {
+    drawerLabel: 'List',
+  }
 
   componentDidMount() {
     const { navigation, listRepos } = this.props;
@@ -54,6 +57,7 @@ export default class RepoList extends Component {
           size: 'medium',
         }}
       />
+
     );
   }
 
@@ -67,6 +71,7 @@ export default class RepoList extends Component {
         data={repos}
         renderItem={this.renderItem}
       />
+
     );
   }
 }
