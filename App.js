@@ -55,7 +55,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Dimensions orientation={this.state.orientation}>
-          <Drawer />
+          <Drawer accessible />
         </Dimensions>
       </Provider>
     );

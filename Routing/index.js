@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, createTabNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
@@ -49,19 +49,18 @@ const Routing = createStackNavigator({
   },
 }, {
   initialRouteParams: { user: 'relferreira' },
-  initialRouteName: 'List',
-  navigationOptions: ({ navigation }) => ({
-    headerLeft: (<HeaderLeft navigation={navigation} />),
-  }),
+  // initialRouteName: 'List',
+  initialRouteKey: 'List',
+  headerMode: 'screen',
+  navigationOptions: (props) => {
+    const { navigation } = props;
+    return ({
+      headerLeft: (<HeaderLeft navigation={navigation} />),
+    });
+  },
 });
 
-export default createDrawerNavigator({
-  Home: {
-    screen: Routing,
-  },
-  List: {
-    screen: ReposList,
-  },
+const Tab = createTabNavigator({
   First: {
     screen: Home,
   },
@@ -73,6 +72,21 @@ export default createDrawerNavigator({
     screen: Third,
   },
 }, {
+  initialRouteName: 'First',
+  tabBarPosition: 'top',
+  initialRouteParams: { user: 'relferreira' },
+});
+
+export default createDrawerNavigator({
+  Home: {
+    screen: Routing,
+  },
+  Tab: {
+    screen: Tab,
+  },
+}, {
+  headerMode: 'float',
+  contentOptions: { activeTintColor: '#e91e63' },
   initialRouteName: 'Home',
   initialRouteParams: { user: 'relferreira' },
 });

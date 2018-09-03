@@ -12,19 +12,19 @@ export default class Dimension extends PureComponent {
   };
 
   componentDidMount() {
-    this.props.setDimensions(Dimensions.get('window'));
+    const { setDimensions } = this.props;
+    setDimensions(Dimensions.get('window'));
   }
 
   componentWillReceiveProps(nextProps) {
-    const { orientation } = this.props;
+    const { orientation, setDimensions } = this.props;
     if (orientation === nextProps.orientation) return;
-    this.props.setDimensions(Dimensions.get('window'));
+    setDimensions(Dimensions.get('window'));
   }
 
 
   render() {
     const { children, dimensions } = this.props;
-    console.log(dimensions);
     return children;
   }
 }
